@@ -59,25 +59,23 @@
 
 <script>
   function playSound(e) {
-  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //audio selects the key from the event and reads its keycode.
-  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //key selects the key class from the doc and reads the keycode of the event(the key being pushed)
-  if (!audio) return; //disables keys that do not correspond to the keycode of keys programmed with sounds.
-  audio.currentTime = 0; //rewinds the sound to the start
-  audio.play(); //if the keycode of the keydown event matches an assigned datakey it will play.
-  key.classList.add('playing'); //adds the class playing to the key from the list of classes
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+  if (!audio) return;
+  audio.currentTime = 0;
+  audio.play();
+  key.classList.add('playing');
 }
 
 function removeTransition(e) {
-  if(e.propertyName !== 'transform') return; // skip it if it's not transform
-  this.classList.remove('playing'); //removes the class playing from the list of clases once the removeTransition function has been set into place.
+  this.classList.remove('playing');
 }
 
 const keys = document.querySelectorAll('.key');
-keys.forEach(key => key.addEventListener('transitionend', removeTransition)); // for each key, add eventlistener to the event transitioned, and the response it remove transition
-window.addEventListener('keydown', playSound); //on the browser window it adds an event listener for the keydown event - someone to click it.
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+window.addEventListener('keydown', playSound);
 
 </script>
-
 
 </body>
 </html>
